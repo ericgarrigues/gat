@@ -13,4 +13,3 @@ gat FILE
 
 - -c : Colorize output (Markdown)
 - -e : Explain (default summarize)
-

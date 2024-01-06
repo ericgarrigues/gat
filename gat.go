@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io"
 	"net/http"
 	"os"
 	"os/user"
@@ -53,25 +52,15 @@ func main() {
 		config.Model = model
 	}
 
-	file, err := os.Open(filename)
+	file, err := os.ReadFile(filename)
 	if err != nil {
 		fmt.Printf("Error opening file: %s\n", err)
 		return
 	}
-	defer file.Close()
 
-	buf := new(bytes.Buffer)
-	_, err = io.Copy(buf, file)
-	if err != nil {
-		fmt.Printf("Error reading file: %s\n", err)
-		return
-	}
-
-	// Parse Markdown content
-	fileContent := buf.String()
 	var output string
 
-	jsonData, err := json.Marshal(map[string]string{"content": fileContent}) // Send the original content to API
+	jsonData, err := json.Marshal(map[string]string{"content": string(file)}) // Send the original content to API
 	if err != nil {
 		fmt.Printf("Error encoding JSON: %s\n", err)
 		return
