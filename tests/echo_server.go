@@ -9,7 +9,13 @@ import (
 
 // Message represents the JSON request structure expected from the cat_http script
 type Message struct {
-	Content string `json:"content"`
+	Response string `json:"response"`
+}
+
+type Request struct {
+	Model       string `json:"model"`
+	Prompt      string `json:"prompt"`
+  Stream      bool `json:"stream"` 
 }
 
 func main() {
@@ -32,14 +38,22 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var msg Message
-	if err := json.Unmarshal(body, &msg); err != nil {
+	var request Request
+
+	if err := json.Unmarshal(body, &request); err != nil {
 		http.Error(w, "Error decoding JSON", http.StatusBadRequest)
 		return
 	}
 
+  fmt.Println("Prompt :", request.Prompt)
+  fmt.Println("Stream :", request.Stream)
+  fmt.Println("Model :", request.Model)
+
+  msg.Response = request.Prompt
+
 	// Create the response message
 	response := Message{
-		Content: msg.Content, // Echoing back the received content
+		Response: msg.Response, // Echoing back the received content
 	}
 
 	// Encode the response to JSON
