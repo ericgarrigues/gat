@@ -93,6 +93,7 @@ func main() {
   var fileContent string
   var ollamaUrl string
   var basePrompt string
+  var language string
 
 	flagSet := flag.NewFlagSet("gat", flag.ExitOnError)
 	flagSet.BoolVar(&colorize, "c", false, "Colorize the output")
@@ -101,6 +102,7 @@ func main() {
 	flagSet.BoolVar(&explain, "e", false, "Ask for explaination instead of summary")
 	flagSet.BoolVar(&format, "f", false, "Format the output as markdown)")
 	flagSet.Float64Var(&temperature, "t", 0.5, "Specify the temperature (default 0.5)")
+	flagSet.StringVar(&language, "l", "", "Ask model to output in the defined language")
 	flagSet.StringVar(&host, "h", "", "Specify the ollama host endpoint (overrides config file)")
 	flagSet.StringVar(&model, "m", "", "Specify the model (overrides config file)")
 	flagSet.StringVar(&prompt, "p", "", "Specify a prompt")
@@ -143,13 +145,21 @@ func main() {
     }
   }
 
+  var langPrompt string
+
+  if language != "" {
+    langPrompt = "Your response must be in " + language
+  } else {
+    langPrompt = ""
+  }
+
   var finalPrompt string
 
   if format {
-    fmt.Println("Response will be in Mardown format.")
-    finalPrompt = "Your response must be in markdown format," + basePrompt + "\n" + fileContent
+    finalPrompt = "Your response must be in markdown format." +
+      langPrompt + basePrompt + "\n" + fileContent
   } else {
-    finalPrompt = basePrompt + "\n" + fileContent
+    finalPrompt = langPrompt + basePrompt + "\n" + fileContent
     colorize = false
   }
 
