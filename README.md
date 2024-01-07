@@ -43,6 +43,8 @@ package. It recognizes the following flags:
 is off)
 - `-e` or `--explain`: asks for an explanation instead of a summary
 - `-f` or `--format`: formats the output as markdown (default is false)
+- `-l` or `--language`: answer if possible in the desired language (default is 
+defined by the model)
 - `-h` or `--ollama_url`: specifies the Ollama API endpoint to use
 (overrides config file)
 - `-m` or `--model`: specifies the GPT model to use (overrides config file)
