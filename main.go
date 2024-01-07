@@ -256,7 +256,7 @@ func loadConfig() (Config, error) {
 
 		// Create and write default config.json if it doesn't exist
 		defaultConfig := Config{
-			Model:     "mistral",
+      Model:     "neural-chat:7b",
 			OllamaURL: "http://127.0.0.1:11434/api/generate",
       Temperature: 0.5,
       Stream: false,

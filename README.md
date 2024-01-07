@@ -17,11 +17,11 @@ and facts checking will be necessary.
 ## Requirements
 
 A running ollama server (ollama serve) with the model pulled (ollama pull
-mistral).
+neural-chat:7b).
 
 You can find and install ollama from [ollama website](https://ollama.ai/)
 
-By default gat is configured to use mistral 7b model as it performs well 
+By default gat is configured to use neural-chat 7b model as it performs well 
 on customer grade GPU with 8GB of RAM but you can override the model in the
 configuration file or at runtime.
 
@@ -164,6 +164,32 @@ of individual rights and limitations on government power, as they
 are essential for maintaining a just and equitable society. It also
 underscores that a government without such guarantees is not truly a
 government at all.
+```
+
+### Explain a specific article of the text, in italian
+
+```bash
+gat "samples/Déclaration des Droits de l'Homme et du Citoyen de 1789.txt" \
+    -h https://ai.automata.fr/ollama/api/generate  \
+    -l italian \
+    -p "What means the article 17 of this text:"
+```
+
+Generated output :
+------------------
+
+```
+Articolo 17 di questo testo significa che l'ignoranza, l'oblio o il
+pregiudizio dei diritti dell'uomo sono le uniche cause dei mali pubblici e
+della corruzione degli Stati. Si è decisi di esporre in una dichiarazione
+solenne i diritti naturali, indisponibili e sacri dell'uomo, perché tale
+dichiarazione sia sempre presente a tutti i membri del corpo sociale e
+li ricordi sempre i loro diritti e i loro doveri. Si spera che le azioni
+del potere legislativo e quello esecutivo possano essere sempre più
+rispettate, in quanto possano essere confrontate con lo scopo di ogni
+istituzione politica. I cittadini, infatti, fanno ricorso ai principi
+semplici ed irrinunciabili per reclamare i diritti e le libertà che
+garantiscano la costituzione e il benessere di tutti.
 ```
 
 ### Explanation of this program code by starling-lm
