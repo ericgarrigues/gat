@@ -21,7 +21,7 @@ mistral).
 
 You can find and install ollama from [ollama website](https://ollama.ai/)
 
-By default gat is configure to use mistral 7b model as it performs well 
+By default gat is configured to use mistral 7b model as it performs well 
 on customer grade GPU with 8GB of RAM but you can override the model in the
 configuration file or at runtime.
 
